@@ -6,8 +6,11 @@ hackrf_tcp was coded in a rush just as a PoC and uploaded to github for the reco
 
 Right now the only way to connect/use hackrf_tcp is through a custom source block for gr-osmosdr which can be found at https://github.com/jpenalbae/gr-osmosdr_hackrftcp
 
-Also note that this has only been tested to work with Linux.
 
+# Known Issues
+
+  * Tested only with Linux
+  * Needs manual restart each time a client disconnects
 
 # Dependencies
 
