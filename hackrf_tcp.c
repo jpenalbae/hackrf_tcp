@@ -304,6 +304,8 @@ int main(int argc, char** argv)
 	}
 	printf("Firmware Version: %s\n", version);
     
+    hackrf_close(device);
+    
     
     /* Setup server addr & port */
     memset(&local,0,sizeof(local));
@@ -356,6 +358,15 @@ int main(int argc, char** argv)
         
         printf("New connection from: %s\n", inet_ntoa(remote.sin_addr));
         
+        
+        /* Open the device */
+        result = hackrf_open(&device);
+        if (result != HACKRF_SUCCESS) {
+            fprintf(stderr, "hackrf_open() failed: %s (%d)\n",
+                    hackrf_error_name(result), result);
+            return EXIT_FAILURE;
+        }
+        
         /* Send hello packet */
         memset(buffer, 0, sizeof(buffer));
         buffer[0] = 0x00;
@@ -365,6 +376,9 @@ int main(int argc, char** argv)
         
         /* Wait for client cmds */
         handle_cmds();
+        
+        /* close the device */
+        hackrf_close(device);
         
         printf("End of client connection.\n");
         close(client);
