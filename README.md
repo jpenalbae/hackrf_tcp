@@ -9,7 +9,7 @@ Right now the only way to connect/use hackrf_tcp is through a custom source bloc
 
 # Known Issues
 
-  * Tested only with Linux
+  * Tested only with Linux and OSX
   * Needs manual restart each time a client disconnects
 
 # Dependencies
